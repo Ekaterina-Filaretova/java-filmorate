@@ -20,6 +20,7 @@ public class FilmController {
 
     private Map<Long, Film> films = new HashMap<>();
     private Long id = 1L;
+    private static final LocalDate WRONG_RELEASE_DATE = LocalDate.of(1895, 12, 28);
 
     @GetMapping("/films")
     public List<Film> getFilms() {
@@ -48,21 +49,21 @@ public class FilmController {
     @PutMapping("/films")
     public ResponseEntity<Film> updateFilm(@Valid @RequestBody Film film) {
         try {
-            if(isValidDate(film.getReleaseDate()) && films.containsKey(film.getId())) {
+            if (isValidDate(film.getReleaseDate()) && films.containsKey(film.getId())) {
                 films.put(film.getId(), film);
                 log.info("Фильм обновлен {}", film);
                 return new ResponseEntity<>(film, HttpStatus.OK);
             } else {
                 log.info("Фильма с id {} нет в списке", film.getId());
             }
-        } catch (ValidationException e){
+        } catch (ValidationException e) {
             log.info("Поймано исключение: ", e);
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     private boolean isValidDate(LocalDate date) {
-        if (date.isBefore(LocalDate.of(1895, 12, 28))) {
+        if (date.isBefore(WRONG_RELEASE_DATE)) {
             throw new ValidationException("дата релиза должна быть не раньше 28.12.1895." +
                     " Переданная дата: " + date);
         }

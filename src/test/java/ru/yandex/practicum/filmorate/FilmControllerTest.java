@@ -33,7 +33,7 @@ public class FilmControllerTest {
         Film film = new Film();
         film.setName("film");
         film.setDescription("desc");
-        film.setReleaseDate(LocalDate.of(2000, 1,1));
+        film.setReleaseDate(LocalDate.of(2000, 1, 1));
         film.setDuration(10);
 
         MockHttpServletRequestBuilder mockRequest = postRequest(film);
@@ -52,7 +52,7 @@ public class FilmControllerTest {
         Film film = new Film();
         film.setName("film");
         film.setDescription("desc");
-        film.setReleaseDate(LocalDate.of(2000, 1,1));
+        film.setReleaseDate(LocalDate.of(2000, 1, 1));
         film.setDuration(10);
 
         MockHttpServletRequestBuilder mockRequest = postRequest(film);
@@ -67,7 +67,7 @@ public class FilmControllerTest {
         Film film = new Film();
         film.setName("film");
         film.setDescription("desc");
-        film.setReleaseDate(LocalDate.of(2000, 1,1));
+        film.setReleaseDate(LocalDate.of(2000, 1, 1));
         film.setDuration(10);
 
         MockHttpServletRequestBuilder mockRequest = postRequest(film);
@@ -76,7 +76,7 @@ public class FilmControllerTest {
         Film film2 = new Film();
         film2.setName("film2");
         film2.setDescription("desc2");
-        film2.setReleaseDate(LocalDate.of(2000, 1,1));
+        film2.setReleaseDate(LocalDate.of(2000, 1, 1));
         film2.setDuration(10);
         film2.setId(1L);
 
@@ -99,7 +99,7 @@ public class FilmControllerTest {
         Film film = new Film();
         film.setName("");
         film.setDescription("desc");
-        film.setReleaseDate(LocalDate.of(2000, 1,1));
+        film.setReleaseDate(LocalDate.of(2000, 1, 1));
         film.setDuration(10);
 
         MockHttpServletRequestBuilder mockRequest = postRequest(film);
@@ -114,7 +114,7 @@ public class FilmControllerTest {
         film.setDescription("Пятеро друзей ( комик-группа «Шарло»), приезжают в город Бризуль. Здесь они хотят " +
                 "разыскать господина Огюста Куглова, который задолжал им деньги, а именно 20 миллионов. о Куглов, " +
                 "который за время «своего отсутствия», стал кандидатом Коломбани.");
-        film.setReleaseDate(LocalDate.of(2000, 1,1));
+        film.setReleaseDate(LocalDate.of(2000, 1, 1));
         film.setDuration(10);
 
         MockHttpServletRequestBuilder mockRequest = postRequest(film);
@@ -127,7 +127,7 @@ public class FilmControllerTest {
         Film film = new Film();
         film.setName("name");
         film.setDescription("desc");
-        film.setReleaseDate(LocalDate.of(1890, 1,1));
+        film.setReleaseDate(LocalDate.of(1890, 1, 1));
         film.setDuration(10);
 
         MockHttpServletRequestBuilder mockRequest = postRequest(film);
@@ -140,7 +140,7 @@ public class FilmControllerTest {
         Film film = new Film();
         film.setName("name");
         film.setDescription("desc");
-        film.setReleaseDate(LocalDate.of(2000, 1,1));
+        film.setReleaseDate(LocalDate.of(2000, 1, 1));
         film.setDuration(0);
 
         MockHttpServletRequestBuilder mockRequest = postRequest(film);

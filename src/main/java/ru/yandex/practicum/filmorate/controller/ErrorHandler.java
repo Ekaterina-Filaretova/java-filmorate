@@ -17,21 +17,21 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidationException(final ValidationException e) {
-        log.info("Exception: " + e);
+        log.warn("Exception: {}", e.toString());
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponse handleObjectAlreadyExistException(final ObjectAlreadyExistException e) {
-        log.info("Exception: " + e);
+        log.warn("Exception: {}", e.toString());
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleObjectNotFoundException(final ObjectNotFoundException e) {
-        log.info("Exception: " + e);
+        log.warn("Exception: {}", e.toString());
         return new ErrorResponse(e.getMessage());
     }
 }

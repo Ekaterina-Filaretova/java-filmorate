@@ -9,6 +9,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,6 +19,7 @@ import java.time.LocalDate;
 public class Film {
 
     private Long id;
+    private Set<Long> filmLikes = new HashSet<>();
 
     @NotBlank(message = "название не может быть пустым")
     private String name;

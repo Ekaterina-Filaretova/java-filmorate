@@ -9,6 +9,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,6 +19,7 @@ import java.time.LocalDate;
 public class User {
 
     private Long id;
+    private Set<Long> userFriends = new HashSet<>();
 
     @NotBlank(message = "электронная почта не может быть пустой")
     @Email(message = "неправильный формат электронной почты")

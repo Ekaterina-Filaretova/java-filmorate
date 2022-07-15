@@ -1,2 +1,2 @@
 # java-filmorate
-Template repository for Filmorate project.
+![filmorate](C:\Users\kater\IdeaProjects\java-filmorate\src\main\resources\filmorate.png)

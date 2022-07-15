@@ -4,9 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -20,6 +22,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Sql(scripts = "/test-data.sql")
+@Sql(scripts = "/delete-data.sql")
 public class UserControllerTest {
 
     private final String url = "/users";
@@ -196,9 +201,7 @@ public class UserControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders
                         .put(url + "/1/friends/2"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userFriends", hasSize(1)))
-                .andExpect(jsonPath("$.userFriends[0]", is(2)));
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -225,8 +228,7 @@ public class UserControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders
                         .delete(url + "/1/friends/2"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userFriends", hasSize(0)));
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -289,6 +291,8 @@ public class UserControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.put(url + "/1/friends/2"));
         mockMvc.perform(MockMvcRequestBuilders.put(url + "/1/friends/3"));
+        mockMvc.perform(MockMvcRequestBuilders.put(url + "/2/friends/1"));
+        mockMvc.perform(MockMvcRequestBuilders.put(url + "/3/friends/1"));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get(url + "/2/friends/common/3"))

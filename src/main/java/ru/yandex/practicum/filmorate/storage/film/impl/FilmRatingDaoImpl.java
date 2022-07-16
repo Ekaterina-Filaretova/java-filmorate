@@ -10,6 +10,8 @@ import java.util.List;
 @Component
 public class FilmRatingDaoImpl implements FilmRatingDao {
 
+    private static final String SELECT_BY_ID = "SELECT * FROM rating WHERE rating_id = ?";
+    private static final String SELECT_ALL = "SELECT * FROM rating ORDER BY rating_id";
     private final JdbcTemplate template;
 
     public FilmRatingDaoImpl(JdbcTemplate template) {
@@ -18,15 +20,13 @@ public class FilmRatingDaoImpl implements FilmRatingDao {
 
     @Override
     public FilmRating getRatingById(Integer id) {
-        String sql = "SELECT * FROM rating WHERE rating_id = ?";
-        return template.queryForObject(sql, (rs, rowNum) ->
+        return template.queryForObject(SELECT_BY_ID, (rs, rowNum) ->
                 new FilmRating(rs.getInt("rating_id"), rs.getString("name")), id);
     }
 
     @Override
     public List<FilmRating> getRatings() {
-        String sql = "SELECT * FROM rating ORDER BY rating_id";
-        return template.query(sql, (rs, rowNum) ->
+        return template.query(SELECT_ALL, (rs, rowNum) ->
                 new FilmRating(rs.getInt("rating_id"), rs.getString("name")));
     }
 }

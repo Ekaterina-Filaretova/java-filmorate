@@ -38,7 +38,7 @@ public class FilmService {
         checkGenres(film.getGenres());
         film = filmStorage.add(film);
         filmStorage.addFilmGenre(film);
-        log.info("Добавлен фильм " + film);
+        log.info("Добавлен фильм {}", film);
         return film;
     }
 
@@ -48,7 +48,7 @@ public class FilmService {
         if (getById(film.getId()) != null) {
             filmStorage.update(film);
             filmStorage.addFilmGenre(film);
-            log.info("Обновлен фильм " + film);
+            log.info("Обновлен фильм {}", film);
             return film;
         } else {
             throw new ObjectNotFoundException("Попытка обновить фильм {}, которого нет в списке " + film);
